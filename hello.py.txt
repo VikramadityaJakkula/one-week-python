@@ -1,0 +1,56 @@
+print("hello world")
+
+
+#
+# Install pyodbc in app data python scripts using pip (pip install pyodbc)
+# <user>AppData\Local\Programs\Python\Python37-32\Scripts
+
+#1) Connect and Retrieve data using sql server
+"""
+import pyodbc 
+conn = pyodbc.connect('Driver={SQL Server};'
+                      'Server=vikramaditya;'
+                      'Database=BIBLE;'
+                      'Trusted_Connection=yes;')
+
+cursor = conn.cursor()
+cursor.execute('SELECT TOP 1000 [id],[b],[c],[v],[t] FROM [BIBLE].[dbo].[t_asv]')
+
+for row in cursor:
+    print(row)
+"""
+#2)
+"""   
+import pyodbc 
+conn = pyodbc.connect('Driver={SQL Server};'
+                      'Server=vikramaditya;'
+                      'Database=BIBLE;'
+                      'Trusted_Connection=yes;')
+
+cursor = conn.cursor()
+cursor.execute('''INSERT into [BIBLE].[dbo].[t_asv](id,b,c,v,t) values (10301942,123,3445,1945,'man')''')
+print('updated')
+conn.commit()
+"""
+
+#3) Connect and Retrive data using mysql #install mysql server community edition 334mb file which has connectors in windows
+import mysql.connector
+
+conn = mysql.connector.connect(
+  host="localhost",
+  user="admin",
+  passwd="admin",
+  database="testdb"
+)
+
+mycursor = conn.cursor()
+
+sql = "DELETE FROM testtable WHERE id = 1 "
+
+
+mycursor.execute(sql)
+
+
+conn.commit()
+
+print(mycursor.rowcount, "record(s) deleted")
